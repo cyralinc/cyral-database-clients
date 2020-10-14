@@ -9,6 +9,11 @@ The `Dockerfile` present in this directory can be used to build an image with da
 docker build . -t cyral-database-clients:v0.0.1
 ```
 
+Aptible build
+```
+docker build . -t cyral-database-clients-aptible:v0.0.1 -f Dockerfile.aptible
+```
+
 After building the Docker container image, we can use it to execute sysbench commands.
 
 ## Using a prebuilt docker image
@@ -20,4 +25,3 @@ docker pull gcr.io/cyralpublic/cyral-database-clients:v0.0.1
 ```
 docker run --rm -it cyral-database-clients:v0.0.1
 ```
-
