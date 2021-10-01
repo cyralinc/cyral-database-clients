@@ -3,6 +3,24 @@ RUN apt-get update && apt-get install -y postgresql-client
 RUN apt-get update && apt-get install -y mysql-client
 RUN apt-get update && apt-get install -y curl netcat
 
+RUN apt-get update && apt-get -y install wget && apt-get -y install git
+RUN apt update && apt install python3-pip -y && ln -s /usr/bin/python3 /usr/bin/python && apt install python3-dev libpq-dev -y && \
+    pip3 install psycopg2 && apt install vim -y && pip3 install sqlalchemy 
+
+RUN apt-get update && apt -y install make automake libtool pkg-config libaio-dev
+
+RUN apt update && \
+     apt-get -y install libssl-dev libmysqlclient-dev mysql-client mysql-workbench && \
+     apt -y install libpq-dev
+
+RUN git clone https://github.com/akopytov/sysbench.git && \
+    cd sysbench && \
+         git checkout 797e4c468f9c974abd6eb7499b718e8542a6f7b6 && \
+         ./autogen.sh && \
+         ./configure --with-pgsql &&  \
+         make -j  && \
+         make install
+
 EXPOSE 2201
 
 RUN mkdir /.aptible/
